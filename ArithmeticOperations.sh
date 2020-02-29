@@ -1,9 +1,7 @@
 #!bin/bash -x
-
 read -p "Enter first value: " a
 read -p "Enter second value: " b
 read -p "Enter third value: " c
-
 Operation1=$(($a + $b * $c))
 Operation2=$(($a % $b + $c)) 
 Operation3=$(($c + $a / $b))
