@@ -4,7 +4,7 @@ goal=200
 win=0
 checker=0
 while [[ $stakes -gt 0 && $stakes -le $goal ]]
-do	
+do
 	((checker++))
 	random=$((RANDOM%2))
 	if [[ $random -eq 0 ]]
@@ -17,4 +17,3 @@ do
 done
 echo $win  wins
 echo $checker plays
-echo $stakes stakes
