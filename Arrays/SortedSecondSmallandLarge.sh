@@ -4,43 +4,22 @@ for (( i=0; i<10; i++ ))
 do
         randomNumbers[(($i))]=$((RANDOM%900+100))
 done
+echo ${randomNumbers[@]}
 
-for ((index=0; index<10; index++ ))
+for ((k=0; k<10; k++ ))
 do
-	for ((nextIndex=$((index++)); nextIndex<10; nextIndex++))
+	temp=0
+	for ((l=0; l<10; l++))
 	do
-		if [[ ${randomNumbers[$Index]} -gt ${randomNumbers[$nextIndex]} ]]
+		if [[ ${randomNumbers[$l]} -gt ${randomNumbers[$k]} ]]
 		then
-				temp=${randomNumbers[$index]}
-				${randomNumbers[$index]}=${randomNumbers[$nextIndex]}
-				${randomNumbers[nextIndex]}=$temp
+				temp=${randomNumbers[$k]}
+				randomNumbers[$k]=${randomNumbers[$l]}
+				randomNumbers[$l]=$temp
 		fi
 	done
 done
-
-echo ${randomNumbers[@]}
-largest=${randomNumbers[0]}
-secondLarge=${randomNumbers[0]}
-
-for((i=0; i<10; i++))
-do
-        if [[ ${randomNumbers[$i]} -ge $largest ]]
-        then
-                secondLarge=$largest
-                largest=${randomNumbers[$i]}
-        fi
-done
-echo "$secondLarge is Second Large in array"
-smallest=${randomNumbers[0]}
-secondSmall=${randomNumbers[0]}
-for((j=0; j<10; j++))
-do
-        if [[ ${randomNumbers[$j]} -le $smallest ]]
-        then
-                secondSmall=$smallest
-                smallest=${randomNumbers[$j]}
-        fi
-done
-echo "$secondSmall is second small in array"
+echo "${randomNumbers[8]} is second largest in array" 
+echo "${randomNumbers[1]} is second small in array"
 
 
