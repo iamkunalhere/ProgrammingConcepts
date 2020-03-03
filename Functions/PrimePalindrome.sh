@@ -1,6 +1,9 @@
 #!/bin/bash -x
 
 function isPrime() {
+	num=$1
+	count=0
+	var=prime
 	for (( i=2; i<$num; i++ ))
 	do
 		if [[ $num%$i -eq 0 ]]
@@ -10,9 +13,10 @@ function isPrime() {
 	done
 	if [[ $count -eq 0 ]]
 	then
-		echo prime
+		echo $1 is prime
 	else
-		echo notPrime
+		echo $1 is not prime
+	fi
 }
 function palindrome() {
         num=$1
@@ -25,4 +29,10 @@ function palindrome() {
         done
         echo $sum
 }
+
+read -p "Enter the number: " num
+isPrime $num
+reverse=$(palindrome $num)
+isPrime $reverse
+
 
