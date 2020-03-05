@@ -1,0 +1,105 @@
+Q. Find word "Systemd" from all log files in folder /var/log and print number of occurance
+
+cmd : $ ls /var/log | grep -c systemd
+o/p : 0
+
+Q. Create process list table 
+
+cmd : $ ps -elf | awk '{ print $4,$5,$15 }' | head -10 | column -t
+
+o/p : 
+	PID  PPID  CMD
+	1    0     /sbin/init
+	2    0     [kthreadd]	
+	4    2     [kworker/0:0H]
+	5    2     [kworker/u8:0]
+	6    2     [mm_percpu_wq]
+	7    2     [ksoftirqd/0]
+	8    2     [rcu_sched]
+	9    2     [rcu_bh]
+	10   2     [migration/0]
+Q.Execute command and check its status 
+
+cmd : $hello 
+
+o/p : Hello, world!
+
+cmd : $echo $?
+
+o/p : 0
+
+Q. Print last four frequently access urls in sorted order
+
+cmd : $cat access.log | awk '{print $11}' | sort -nr | uniq -c | awk '{print $1,$2}' | column -t | sort -rn | head -4
+
+o/p : 
+1475  "https://fundoopush-dev.bridgelabz.com/login"
+1141  "https://fundoopush-dev.bridgelabz.com/dashboard/article"
+377   "-"
+176   "https://fundoopush-dev.bridgelabz.com/add-post"
+
+Q. Print list of web response code in unique sorted order at specific hours
+
+cmd : $cat access.log | awk '{print $9}' | sort | uniq -c | sort -rn  | head -2
+
+o/p : 
+3176 200
+  26 304
+
+Q. Print Employee Name and totalpay who has basePay greater than 10000
+
+cmd : $ cat data.csv  | awk '$4 > 10000 {print $2, $7}'| column -t
+
+o/p : 
+	EmployeeName  TotalPay
+	NATHANIEL     567595
+	GARY          538909
+	ALBERT        335279
+	CHRISTOPHER   332343
+	PATRICK       326373
+	DAVID         316285
+	ALSON         315981
+	DAVID         307899
+	JOANNE        302377
+	PATRICIA      297608
+	EDWARD        294580
+
+Q. Print Jobtitle and and Overtime pay where overtime pay is in between 7000 & 10000
+
+cmd : $ cat data.csv  | awk '{if ($5 > 7000 && $5 < 10000) print $3, $5}' | column -t
+
+o/p : 
+DEPUTYCHIEF  9737
+ASSTDEPUTY   8601
+
+Q. Select Employee where job title is CAPTAIN and  calculate sum of its total pay and print
+
+cmd : cat data.csv |grep CAPTAIN | awk '{sum+=$7} END {print sum}'
+
+o/p : 1171796
+
+Q. Print average basepay
+
+cmd : $ cat data.csv  | awk '{sum+=$4} END {print sum/NR}'
+
+o/p : 157972
+
+Q. Find Difference between original file and updated file
+
+cmd : $ diff original/ updated/
+
+o/p :
+	Only in original/: original-file.sh
+	Only in updated/: updated-file.sh
+
+Q. Print last 10 unique sorted client IP from /var/log/httpd/access.log
+
+cmd : cat access.log |awk '{print $21 , $22}' |sort |uniq -c |sort -rn | head -4
+
+o/p : 
+
+   2348 Safari/537.36" "114.79.180.62"
+    474 like Gecko)
+    168 Gecko) Chrome/77.0.3865.90
+    148  
+
